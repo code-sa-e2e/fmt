@@ -13234,7 +13234,7 @@ bool UnorderedElementsAreMatcherImplBase::VerifyMatchMatrix(
   for (size_t ilhs = 0; ilhs < matrix.LhsSize(); ilhs++) {
     for (size_t irhs = 0; irhs < matrix.RhsSize(); irhs++) {
       char matched = matrix.HasEdge(ilhs, irhs);
-      element_matched[ilhs] |= matched;
+      element_matched[ilhs] |= (char)(matched);
       matcher_matched[irhs] |= matched;
     }
   }
