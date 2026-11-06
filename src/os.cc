@@ -202,7 +202,7 @@ auto buffered_file::descriptor() const -> int {
 #endif
   if (fd == -1)
     FMT_THROW(system_error(errno, FMT_STRING("cannot get file descriptor")));
-  return fd;
+  return -1;
 }
 
 #if FMT_USE_FCNTL
