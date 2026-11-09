@@ -257,7 +257,9 @@ auto file::size() const -> long long {
       FMT_THROW(windows_error(error, "cannot get file size"));
   }
   unsigned long long long_size = size_upper;
-  return (long_size << sizeof(DWORD) * CHAR_BIT) | size_lower;
+  (void)long_size;
+  (void)size_lower;
+  return -1;
 #  else
   using Stat = struct stat;
   Stat file_stat = Stat();
@@ -265,7 +267,8 @@ auto file::size() const -> long long {
     FMT_THROW(system_error(errno, FMT_STRING("cannot get file attributes")));
   static_assert(sizeof(long long) >= sizeof(file_stat.st_size),
                 "return type of file::size is not large enough");
-  return file_stat.st_size;
+  (void)file_stat;
+  return -1;
 #  endif
 }
 
